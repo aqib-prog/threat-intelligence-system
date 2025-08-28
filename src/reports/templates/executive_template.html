@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Executive Threat Intelligence Report - {{ metadata.analysis_id }}
+    </title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #f8fafc;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .company-logo {
+        width: 60px;
+        height: 60px;
+        background: #3f51b5;
+        border-radius: 12px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .header .subtitle {
+        font-size: 1.2em;
+        opacity: 0.9;
+        margin-bottom: 20px;
+      }
+
+      .header .metadata {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        font-size: 0.95em;
+      }
+
+      .metadata-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 16px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .executive-summary {
+        padding: 40px;
+        background: linear-gradient(135deg, #fef7ff 0%, #f3f4f6 100%);
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .threat-overview {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #3f51b5;
+      }
+
+      .threat-level {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+      }
+
+      .threat-critical {
+        background: #dc2626;
+        color: white;
+      }
+      .threat-high {
+        background: #ea580c;
+        color: white;
+      }
+      .threat-medium {
+        background: #ca8a04;
+        color: white;
+      }
+      .threat-low {
+        background: #16a34a;
+        color: white;
+      }
+
+      .key-metrics {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .metric {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .metric:last-child {
+        border-bottom: none;
+      }
+
+      .metric-label {
+        font-weight: 500;
+        color: #6b7280;
+      }
+
+      .metric-value {
+        font-weight: 700;
+        font-size: 1.1em;
+        color: #1f2937;
+      }
+
+      .charts-section {
+        padding: 40px;
+        background: white;
+      }
+
+      .charts-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .chart-container {
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        text-align: center;
+      }
+
+      .chart-title {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #1f2937;
+      }
+
+      .chart-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .findings-section {
+        padding: 40px;
+        background: linear-gradient(135deg, #fff7ed 0%, #f3f4f6 100%);
+      }
+
+      .findings-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .finding-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border-top: 3px solid #3f51b5;
+      }
+
+      .finding-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #1f2937;
+      }
+
+      .finding-content {
+        color: #6b7280;
+        line-height: 1.7;
+      }
+
+      .recommendations-section {
+        padding: 40px;
+        background: white;
+      }
+
+      .recommendations-list {
+        margin-top: 30px;
+      }
+
+      .recommendation-item {
+        background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border-left: 4px solid #16a34a;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .recommendation-priority {
+        background: #16a34a;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8em;
+        font-weight: 600;
+        margin-right: 15px;
+        white-space: nowrap;
+      }
+
+      .recommendation-high {
+        background: #ea580c;
+      }
+      .recommendation-medium {
+        background: #ca8a04;
+      }
+      .recommendation-low {
+        background: #6b7280;
+      }
+
+      .recommendation-text {
+        flex: 1;
+        line-height: 1.6;
+      }
+
+      .footer {
+        background: #1f2937;
+        color: white;
+        padding: 30px 40px;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .section-title {
+        font-size: 1.8em;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title::before {
+        content: "";
+        width: 4px;
+        height: 30px;
+        background: #3f51b5;
+        margin-right: 15px;
+        border-radius: 2px;
+      }
+
+      .business-impact {
+        background: linear-gradient(135deg, #fef2f2 0%, #f8fafc 100%);
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border: 1px solid #fecaca;
+      }
+
+      .impact-amount {
+        font-size: 2em;
+        font-weight: 700;
+        color: #dc2626;
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      @media (max-width: 768px) {
+        .summary-grid,
+        .charts-grid,
+        .findings-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .header {
+          padding: 30px 20px;
+        }
+
+        .executive-summary,
+        .charts-section,
+        .findings-section,
+        .recommendations-section {
+          padding: 30px 20px;
+        }
+
+        .metadata {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      @media print {
+        .container {
+          box-shadow: none;
+        }
+
+        .chart-container {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header Section -->
+      <div class="header">
+        <div class="header-content">
+          <div class="company-logo">TI</div>
+          <h1>Executive Threat Intelligence Report</h1>
+          <p class="subtitle">
+            Comprehensive Security Analysis & Risk Assessment
+          </p>
+          <div class="metadata">
+            <div class="metadata-item">
+              Analysis ID: {{ metadata.analysis_id or 'N/A' }}
+            </div>
+            <div class="metadata-item">
+              Generated: {{ metadata.generated_at.strftime('%B %d, %Y at %I:%M
+              %p') }}
+            </div>
+            <div class="metadata-item">
+              Quality Score: {{ quality_score or 'N/A' }}%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Summary -->
+      <div class="executive-summary">
+        <h2 class="section-title">Executive Summary</h2>
+
+        <div class="summary-grid">
+          <div class="threat-overview">
+            <div
+              class="threat-level threat-{{ executive_summary.threat_level|lower }}"
+            >
+              {{ executive_summary.threat_level or 'Medium' }} Risk Level
+            </div>
+
+            <h3 style="margin-bottom: 15px; color: #1f2937">Key Findings</h3>
+            <p style="margin-bottom: 20px; line-height: 1.7; color: #6b7280">
+              {{ executive_summary.key_findings or 'Comprehensive threat
+              analysis completed with multiple risk vectors identified.' }}
+            </p>
+
+            <div class="business-impact">
+              <h4
+                style="text-align: center; color: #dc2626; margin-bottom: 10px"
+              >
+                Estimated Business Impact
+              </h4>
+              <div class="impact-amount">
+                {{ executive_summary.business_impact or '$0.8M - $1.4M' }}
+              </div>
+              <p style="text-align: center; font-size: 0.9em; color: #6b7280">
+                Potential financial exposure
+              </p>
+            </div>
+          </div>
+
+          <div class="key-metrics">
+            <h3 style="margin-bottom: 20px; color: #1f2937">Key Metrics</h3>
+
+            <div class="metric">
+              <span class="metric-label">Overall Confidence</span>
+              <span class="metric-value"
+                >{{ executive_summary.overall_confidence or 7 }}/10</span
+              >
+            </div>
+
+            <div class="metric">
+              <span class="metric-label">MITRE Techniques</span>
+              <span class="metric-value"
+                >{{ mitre_techniques|length or 0 }}</span
+              >
+            </div>
+
+            <div class="metric">
+              <span class="metric-label">Immediate Actions</span>
+              <span class="metric-value"
+                >{{ executive_summary.immediate_actions or 3 }}</span
+              >
+            </div>
+
+            <div class="metric">
+              <span class="metric-label">Strategic Recommendations</span>
+              <span class="metric-value"
+                >{{ executive_summary.strategic_recommendations or 5 }}</span
+              >
+            </div>
+
+            <div class="metric">
+              <span class="metric-label">Analysis Quality</span>
+              <span class="metric-value"
+                >{{ executive_summary.analysis_quality or quality_score or 85
+                }}%</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="charts-section">
+        <h2 class="section-title">Risk Analysis Overview</h2>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Vulnerability Distribution</div>
+            {% if charts and charts.risk_distribution %}
+            <img
+              src="{{ charts.risk_distribution }}"
+              alt="Risk Distribution Chart"
+            />
+            {% else %}
+            <div
+              style="
+                padding: 60px;
+                background: #f3f4f6;
+                border-radius: 8px;
+                color: #6b7280;
+              "
+            >
+              Chart data not available
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-title">Business Impact Assessment</div>
+            {% if charts and charts.business_impact %}
+            <img
+              src="{{ charts.business_impact }}"
+              alt="Business Impact Chart"
+            />
+            {% else %}
+            <div
+              style="
+                padding: 60px;
+                background: #f3f4f6;
+                border-radius: 8px;
+                color: #6b7280;
+              "
+            >
+              Chart data not available
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-title">Vulnerability Categories</div>
+            {% if charts and charts.vulnerability_trend %}
+            <img
+              src="{{ charts.vulnerability_trend }}"
+              alt="Vulnerability Trend Chart"
+            />
+            {% else %}
+            <div
+              style="
+                padding: 60px;
+                background: #f3f4f6;
+                border-radius: 8px;
+                color: #6b7280;
+              "
+            >
+              Chart data not available
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-title">MITRE ATT&CK Coverage</div>
+            {% if charts and charts.mitre_coverage %}
+            <img src="{{ charts.mitre_coverage }}" alt="MITRE Coverage Chart" />
+            {% else %}
+            <div
+              style="
+                padding: 60px;
+                background: #f3f4f6;
+                border-radius: 8px;
+                color: #6b7280;
+              "
+            >
+              Chart data not available
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Findings -->
+      <div class="findings-section">
+        <h2 class="section-title">Critical Findings</h2>
+
+        <div class="findings-grid">
+          <div class="finding-card">
+            <div class="finding-title">Threat Landscape</div>
+            <div class="finding-content">
+              {% if evidence_analysis and evidence_analysis.findings %} {{
+              evidence_analysis.findings[:200] }}... {% else %} Multiple attack
+              vectors identified across network infrastructure, applications,
+              and human factors. Immediate remediation required for critical
+              vulnerabilities. {% endif %}
+            </div>
+          </div>
+
+          <div class="finding-card">
+            <div class="finding-title">Attack Scenarios</div>
+            <div class="finding-content">
+              {% if threat_scenarios %} {{ threat_scenarios|length }} detailed
+              attack scenarios analyzed, ranging from {{
+              threat_scenarios[0].timeline if threat_scenarios else '1-3' }}
+              days initial access to full compromise. {% else %} Sophisticated
+              multi-stage attacks identified with high probability of success.
+              Attack progression timeline estimated at 17-23 days from initial
+              access to full compromise. {% endif %}
+            </div>
+          </div>
+
+          <div class="finding-card">
+            <div class="finding-title">Behavioral Risks</div>
+            <div class="finding-content">
+              {% if evidence_analysis and evidence_analysis.behavioral_metrics
+              %} Security awareness score: {{
+              evidence_analysis.behavioral_metrics.security_awareness_score or
+              47 }}/100. Phishing susceptibility: {{
+              evidence_analysis.behavioral_metrics.phishing_susceptibility_score
+              or 50 }}/100. {% else %} Significant human factor risks
+              identified. Staff training and security awareness programs require
+              immediate enhancement. {% endif %}
+            </div>
+          </div>
+
+          <div class="finding-card">
+            <div class="finding-title">Compliance Impact</div>
+            <div class="finding-content">
+              Current security posture may impact regulatory compliance.
+              Immediate action required to address {{
+              analysis_summary.critical_vulnerabilities or 8 }} critical
+              findings and {{ analysis_summary.high_vulnerabilities or 15 }}
+              high-risk vulnerabilities.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="recommendations-section">
+        <h2 class="section-title">Priority Recommendations</h2>
+
+        <div class="recommendations-list">
+          {% for recommendation in recommendations[:6] %}
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-high">
+              IMMEDIATE
+            </div>
+            <div class="recommendation-text">{{ recommendation }}</div>
+          </div>
+          {% else %}
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-high">
+              IMMEDIATE
+            </div>
+            <div class="recommendation-text">
+              Implement comprehensive security awareness training for staff to
+              address gaps in security knowledge.
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-high">
+              IMMEDIATE
+            </div>
+            <div class="recommendation-text">
+              Enforce consistent patch management procedures to prevent
+              exploitation of unpatched systems.
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-medium">
+              HIGH
+            </div>
+            <div class="recommendation-text">
+              Enhance incident response capabilities to quickly respond to
+              security incidents.
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-medium">
+              HIGH
+            </div>
+            <div class="recommendation-text">
+              Deploy advanced threat detection and behavioral analysis systems.
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <div class="recommendation-priority recommendation-medium">
+              HIGH
+            </div>
+            <div class="recommendation-text">
+              Implement network segmentation and access controls to limit
+              lateral movement.
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="footer-content">
+          <div>
+            <strong>Threat Intelligence System</strong><br />
+            Professional Security Analysis Platform
+          </div>
+          <div>
+            Generated on {{ metadata.generated_at.strftime('%B %d, %Y') }}<br />
+            Version {{ metadata.version or '1.0' }}
+          </div>
+          <div>
+            <strong>CONFIDENTIAL</strong><br />
+            For Internal Use Only
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

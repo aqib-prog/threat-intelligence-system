@@ -1,0 +1,652 @@
+{
+  "analysis_id": "TI_20250826_101446",
+  "timestamp": "2025-08-26T10:14:46.464584",
+  "execution_time": 36.3,
+  "executive_summary": {
+    "threat_level": "Medium",
+    "overall_confidence": 7,
+    "key_findings": "Comprehensive threat analysis completed with optimization",
+    "immediate_actions": 3,
+    "strategic_recommendations": 5,
+    "business_impact": "$0.8M - $1.4M",
+    "analysis_quality": 85.9,
+    "challenger_enhanced": false,
+    "approval_status": "APPROVED"
+  },
+  "detailed_findings": {
+    "executive_summary": "A sophisticated attacker has been detected, leveraging multiple techniques to gain initial access, escalate privileges, and move laterally within the network. The attack progression suggests a high degree of confidence and a significant risk to the organization.",
+    "calculated_business_impact": {
+      "estimated_records": 0,
+      "cost_per_record": 169,
+      "range": "$0.8M - $1.4M",
+      "methodology": "Based on IBM Cost of Data Breach 2024 report"
+    },
+    "calculated_timeline": {
+      "min_days": 15,
+      "max_days": 19,
+      "range": "15-19 days",
+      "methodology": "Dynamic calculation based on MITRE tactic complexity",
+      "complexity_factors": {
+        "total_complexity": 31,
+        "unique_tactics": 8,
+        "techniques_analyzed": 20
+      }
+    },
+    "success_probability": {
+      "probability": 0.9,
+      "percentage": "90%",
+      "assessment": "High"
+    },
+    "detailed_attack_phases": [
+      {
+        "phase": "Initial Access",
+        "techniques": [
+          "T1192",
+          "T1566.001",
+          "T1566.002"
+        ],
+        "technique_details": [
+          {
+            "id": "T1192",
+            "name": "Spearphishing Link",
+            "tactic": "initial-access"
+          },
+          {
+            "id": "T1566.001",
+            "name": "Spearphishing Attachment",
+            "tactic": "initial-access"
+          },
+          {
+            "id": "T1566.002",
+            "name": "Spearphishing Link",
+            "tactic": "initial-access"
+          }
+        ],
+        "timeline": "Days 1-3",
+        "duration_days": 3,
+        "description": "Attackers execute Initial Access using Spearphishing Link, Spearphishing Attachment, Spearphishing Link.",
+        "business_impact": "Establishes attacker foothold, potential for undetected access"
+      },
+      {
+        "phase": "Persistence",
+        "techniques": [
+          "T1037",
+          "T1556.003"
+        ],
+        "technique_details": [
+          {
+            "id": "T1037",
+            "name": "Boot or Logon Initialization Scripts",
+            "tactic": "persistence"
+          },
+          {
+            "id": "T1556.003",
+            "name": "Pluggable Authentication Modules",
+            "tactic": "persistence"
+          }
+        ],
+        "timeline": "Days 4-5",
+        "duration_days": 2,
+        "description": "Attackers execute Persistence using Boot or Logon Initialization Scripts, Pluggable Authentication Modules.",
+        "business_impact": "Long-term system compromise, ongoing security risk"
+      },
+      {
+        "phase": "Privilege Escalation",
+        "techniques": [
+          "T1037"
+        ],
+        "technique_details": [
+          {
+            "id": "T1037",
+            "name": "Boot or Logon Initialization Scripts",
+            "tactic": "privilege-escalation"
+          }
+        ],
+        "timeline": "Days 6-6",
+        "duration_days": 1,
+        "description": "Attackers execute Privilege Escalation using Boot or Logon Initialization Scripts.",
+        "business_impact": "Increased access to sensitive systems and data"
+      },
+      {
+        "phase": "Defense Evasion",
+        "techniques": [
+          "T1027.013",
+          "T1556.003"
+        ],
+        "technique_details": [
+          {
+            "id": "T1027.013",
+            "name": "Encrypted/Encoded File",
+            "tactic": "defense-evasion"
+          },
+          {
+            "id": "T1556.003",
+            "name": "Pluggable Authentication Modules",
+            "tactic": "defense-evasion"
+          }
+        ],
+        "timeline": "Days 7-8",
+        "duration_days": 2,
+        "description": "Attackers execute Defense Evasion using Encrypted/Encoded File, Pluggable Authentication Modules.",
+        "business_impact": "Reduced visibility into attack activities"
+      },
+      {
+        "phase": "Credential Access",
+        "techniques": [
+          "T1003",
+          "T1056.001",
+          "T1110",
+          "T1110.001",
+          "T1110.002",
+          "T1171",
+          "T1556.003"
+        ],
+        "technique_details": [
+          {
+            "id": "T1003",
+            "name": "OS Credential Dumping",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1056.001",
+            "name": "Keylogging",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1110",
+            "name": "Brute Force",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1110.001",
+            "name": "Password Guessing",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1110.002",
+            "name": "Password Cracking",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1171",
+            "name": "LLMNR/NBT-NS Poisoning and Relay",
+            "tactic": "credential-access"
+          },
+          {
+            "id": "T1556.003",
+            "name": "Pluggable Authentication Modules",
+            "tactic": "credential-access"
+          }
+        ],
+        "timeline": "Days 9-15",
+        "duration_days": 7,
+        "description": "Attackers execute Credential Access using OS Credential Dumping, Keylogging, Brute Force and 4 other techniques.",
+        "business_impact": "Risk of account compromise and unauthorized access"
+      },
+      {
+        "phase": "Collection",
+        "techniques": [
+          "T1056.001",
+          "T1114"
+        ],
+        "technique_details": [
+          {
+            "id": "T1056.001",
+            "name": "Keylogging",
+            "tactic": "collection"
+          },
+          {
+            "id": "T1114",
+            "name": "Email Collection",
+            "tactic": "collection"
+          }
+        ],
+        "timeline": "Days 16-17",
+        "duration_days": 2,
+        "description": "Attackers execute Collection using Keylogging, Email Collection.",
+        "business_impact": "Data aggregation phase, privacy and compliance concerns"
+      },
+      {
+        "phase": "Impact",
+        "techniques": [
+          "T1492",
+          "T1565.001"
+        ],
+        "technique_details": [
+          {
+            "id": "T1492",
+            "name": "Stored Data Manipulation",
+            "tactic": "impact"
+          },
+          {
+            "id": "T1565.001",
+            "name": "Stored Data Manipulation",
+            "tactic": "impact"
+          }
+        ],
+        "timeline": "Days 18-19",
+        "duration_days": 2,
+        "description": "Attackers execute Impact using Stored Data Manipulation, Stored Data Manipulation.",
+        "business_impact": "Direct business disruption, system availability issues"
+      }
+    ],
+    "prioritized_recommendations": [
+      "Deploy multi-factor authentication and password management solutions",
+      "Deploy data loss prevention (DLP) and monitoring solutions",
+      "Apply principle of least privilege and privilege access management",
+      "Implement backup and recovery procedures with business continuity planning",
+      "Deploy advanced threat detection and behavioral analysis",
+      "Implement multi-factor authentication and credential monitoring",
+      "Implement endpoint detection and response (EDR) solutions",
+      "Deploy network segmentation and access controls"
+    ],
+    "confidence": 5.7,
+    "executive_narrative": "Executive Summary: Sophisticated threat actors launch targeted campaign using 20 validated attack techniques.\n        \n        Attack Timeline: The attack progresses over 15-19 days, leveraging modern techniques for rapid system compromise.\n        \n        Business Impact: Estimated financial impact ranges from $0.8M - $1.4M, including incident response costs, regulatory compliance, and business disruption.\n        \n        Success Probability: 90% likelihood based on current security posture and validated threat intelligence.\n        \n        This assessment is based on real-world attack patterns and current threat landscape data from 2024 incident reports.",
+    "asset_analysis": {
+      "findings": [
+        "The Customer Database system is highly critical and exposed to various attack techniques, including Gather Victim Host Information (T1592) and Stored Data Manipulation (T1492).",
+        "The Email Server system is vulnerable to email-based attacks, such as Spearphishing Link (T1192) and Email Collection (T1114).",
+        "Both systems have a high exposure score, indicating a significant attack surface."
+      ],
+      "mitre_techniques": [
+        "T1592",
+        "T1590.002",
+        "T1492",
+        "T1594",
+        "T1565.001",
+        "T1597.002",
+        "T1590.005",
+        "T1037",
+        "T1192",
+        "T1114"
+      ],
+      "risk_level": "High",
+      "recommendations": [
+        "Implement robust security measures to protect the Customer Database system, such as network segmentation and access controls.",
+        "Enhance email security by implementing anti-phishing measures and employee awareness training.",
+        "Conduct regular vulnerability assessments and penetration testing to identify and remediate potential security weaknesses."
+      ],
+      "confidence": 8,
+      "quantitative_analysis": {
+        "total_systems_analyzed": 2,
+        "critical_systems_count": 1,
+        "attack_surface_score": 47.5,
+        "lateral_movement_paths": 0,
+        "privilege_escalation_opportunities": 0,
+        "external_exposure_count": 1,
+        "data_sensitivity_score": 12.5
+      },
+      "risk_prioritization": [
+        {
+          "system_name": "Customer Database",
+          "risk_score": 50,
+          "risk_factors": [
+            "Critical System"
+          ],
+          "priority": "Medium",
+          "system_type": "Database System"
+        },
+        {
+          "system_name": "Email Server",
+          "risk_score": 45,
+          "risk_factors": [
+            "External Exposure"
+          ],
+          "priority": "Medium",
+          "system_type": "Email System"
+        }
+      ],
+      "primary_attack_vectors": {
+        "Database Attacks": 1,
+        "Customer Facing": 1,
+        "Web Application Attacks": 2,
+        "Data Exfiltration": 1,
+        "External Exposure": 1,
+        "Email Attacks": 1,
+        "External Connectivity": 1
+      },
+      "validated_mitre_techniques": [
+        {
+          "id": "T1592",
+          "name": "Gather Victim Host Information"
+        },
+        {
+          "id": "T1590.002",
+          "name": "DNS"
+        },
+        {
+          "id": "T1492",
+          "name": "Stored Data Manipulation"
+        },
+        {
+          "id": "T1594",
+          "name": "Search Victim-Owned Websites"
+        },
+        {
+          "id": "T1565.001",
+          "name": "Stored Data Manipulation"
+        },
+        {
+          "id": "T1597.002",
+          "name": "Purchase Technical Data"
+        },
+        {
+          "id": "T1590.005",
+          "name": "IP Addresses"
+        },
+        {
+          "id": "T1037",
+          "name": "Boot or Logon Initialization Scripts"
+        },
+        {
+          "id": "T1192",
+          "name": "Spearphishing Link"
+        },
+        {
+          "id": "T1114",
+          "name": "Email Collection"
+        }
+      ]
+    },
+    "evidence_analysis": {
+      "findings": "The organization exhibits a moderate risk posture due to the presence of various behavioral patterns and MITRE techniques. The top techniques identified include encrypted/encoded files, password guessing, OS credential dumping, LLMNR/NBT-NS poisoning, and password cracking. The lack of incident patterns suggests limited visibility into security events.",
+      "mitre_techniques": [
+        "T1027.013",
+        "T1110.001",
+        "T1003",
+        "T1171",
+        "T1110.002",
+        "T1556.003",
+        "T1192",
+        "T1566.002",
+        "T1566.001",
+        "T1056.001",
+        "T1110"
+      ],
+      "risk_level": "Medium",
+      "recommendations": [
+        "Implement robust password policies and multi-factor authentication to mitigate password-related risks.",
+        "Conduct regular security awareness training to educate users about phishing and social engineering threats.",
+        "Enhance incident response capabilities to improve visibility into security events.",
+        "Perform vulnerability assessments to identify and remediate weaknesses in the organization's defenses."
+      ],
+      "confidence": 7,
+      "behavioral_metrics": {
+        "phishing_susceptibility_score": 55,
+        "credential_hygiene_score": 41,
+        "security_awareness_score": 51,
+        "incident_response_readiness": 50,
+        "social_engineering_resistance": 60,
+        "policy_compliance_score": 65,
+        "technology_adoption_score": 60
+      },
+      "risk_categories": {
+        "critical_risks": [],
+        "high_risks": [],
+        "medium_risks": [
+          {
+            "characteristic": "password",
+            "frequency": 2,
+            "evidence_strength": "Moderate"
+          },
+          {
+            "characteristic": "phishing",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "weak",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "team",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "authentication",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          }
+        ],
+        "low_risks": [
+          {
+            "characteristic": "awareness",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          }
+        ],
+        "risk_themes": {}
+      },
+      "training_priorities": [],
+      "security_maturity": {
+        "overall_score": 3.0,
+        "maturity_level": "Initial",
+        "dimension_scores": {
+          "governance": 0,
+          "awareness": 12,
+          "response": 0,
+          "technology": 0
+        },
+        "strengths": [],
+        "improvement_areas": [
+          "governance",
+          "awareness",
+          "response",
+          "technology"
+        ]
+      },
+      "behavioral_insights": "Identified 6 behavioral patterns and risk factors",
+      "validated_mitre_techniques": [
+        {
+          "id": "T1027.013",
+          "name": "Encrypted/Encoded File"
+        },
+        {
+          "id": "T1110.001",
+          "name": "Password Guessing"
+        },
+        {
+          "id": "T1003",
+          "name": "OS Credential Dumping"
+        },
+        {
+          "id": "T1171",
+          "name": "LLMNR/NBT-NS Poisoning and Relay"
+        },
+        {
+          "id": "T1110.002",
+          "name": "Password Cracking"
+        },
+        {
+          "id": "T1556.003",
+          "name": "Pluggable Authentication Modules"
+        },
+        {
+          "id": "T1192",
+          "name": "Spearphishing Link"
+        },
+        {
+          "id": "T1566.002",
+          "name": "Spearphishing Link"
+        },
+        {
+          "id": "T1566.001",
+          "name": "Spearphishing Attachment"
+        },
+        {
+          "id": "T1056.001",
+          "name": "Keylogging"
+        },
+        {
+          "id": "T1110",
+          "name": "Brute Force"
+        }
+      ],
+      "behavioral_mitre_mappings": [
+        {
+          "finding": "phishing targeting finance team, weak password reuse, unpatched servers",
+          "evidence_source": "Executive Interview",
+          "technique_id": "T1192",
+          "technique_name": "Spearphishing Link",
+          "mapping_confidence": "High",
+          "confidence_score": 80,
+          "mapping_reasons": [
+            "Phishing behavior match"
+          ],
+          "behavioral_context": "Email security behavior analysis"
+        },
+        {
+          "finding": "phishing targeting finance team, weak password reuse, unpatched servers",
+          "evidence_source": "Executive Interview",
+          "technique_id": "T1566.002",
+          "technique_name": "Spearphishing Link",
+          "mapping_confidence": "High",
+          "confidence_score": 80,
+          "mapping_reasons": [
+            "Phishing behavior match"
+          ],
+          "behavioral_context": "Email security behavior analysis"
+        },
+        {
+          "finding": "phishing targeting finance team, weak password reuse, unpatched servers",
+          "evidence_source": "Executive Interview",
+          "technique_id": "T1566.001",
+          "technique_name": "Spearphishing Attachment",
+          "mapping_confidence": "High",
+          "confidence_score": 80,
+          "mapping_reasons": [
+            "Phishing behavior match"
+          ],
+          "behavioral_context": "Email security behavior analysis"
+        },
+        {
+          "finding": "phishing targeting finance team, weak password reuse, unpatched servers",
+          "evidence_source": "Executive Interview",
+          "technique_id": "T1003",
+          "technique_name": "OS Credential Dumping",
+          "mapping_confidence": "High",
+          "confidence_score": 75,
+          "mapping_reasons": [
+            "Credential behavior match"
+          ],
+          "behavioral_context": "Authentication behavior assessment"
+        },
+        {
+          "finding": "password sharing, unauthorized usb usage, lack of awareness",
+          "evidence_source": "User Survey",
+          "technique_id": "T1003",
+          "technique_name": "OS Credential Dumping",
+          "mapping_confidence": "High",
+          "confidence_score": 75,
+          "mapping_reasons": [
+            "Credential behavior match"
+          ],
+          "behavioral_context": "Authentication behavior assessment"
+        }
+      ]
+    }
+  },
+  "execution_log": [
+    {
+      "timestamp": "2025-08-26T10:14:14.148185",
+      "agent": "orchestrator",
+      "status": "COMPLETED",
+      "duration": 3.988158,
+      "error": null,
+      "priority": 1
+    },
+    {
+      "timestamp": "2025-08-26T10:14:17.664595",
+      "agent": "interview_analyzer",
+      "status": "COMPLETED",
+      "duration": 3.515889,
+      "error": null,
+      "priority": 2
+    },
+    {
+      "timestamp": "2025-08-26T10:14:17.745046",
+      "agent": "asset_vulnerability_mapper",
+      "status": "COMPLETED",
+      "duration": 3.596552,
+      "error": null,
+      "priority": 2
+    },
+    {
+      "timestamp": "2025-08-26T10:14:35.335878",
+      "agent": "threat_validator",
+      "status": "COMPLETED",
+      "duration": 17.590564,
+      "error": null,
+      "priority": 3
+    },
+    {
+      "timestamp": "2025-08-26T10:14:46.447164",
+      "agent": "scenario_generator",
+      "status": "COMPLETED",
+      "duration": 11.11113,
+      "error": null,
+      "priority": 4
+    },
+    {
+      "timestamp": "2025-08-26T10:14:46.464377",
+      "agent": "quality_gate",
+      "status": "COMPLETED",
+      "duration": 0.017042,
+      "error": null,
+      "priority": 5
+    }
+  ],
+  "performance_metrics": {
+    "total_agents": 6,
+    "completed_agents": 6,
+    "total_execution_time": 39.82,
+    "avg_execution_time": 6.64,
+    "fastest_agent": {
+      "name": "quality_gate",
+      "time": 0.02
+    },
+    "slowest_agent": {
+      "name": "threat_validator",
+      "time": 17.59
+    },
+    "optimization_effectiveness": "Medium"
+  },
+  "recommendations": [
+    "Deploy multi-factor authentication and password management solutions",
+    "Deploy data loss prevention (DLP) and monitoring solutions",
+    "Apply principle of least privilege and privilege access management",
+    "Implement backup and recovery procedures with business continuity planning",
+    "Deploy advanced threat detection and behavioral analysis",
+    "Implement multi-factor authentication and credential monitoring",
+    "Implement endpoint detection and response (EDR) solutions",
+    "Deploy network segmentation and access controls"
+  ],
+  "auto_approved": true,
+  "quality_assurance": {
+    "approval_status": "APPROVED",
+    "quality_score": 85.9,
+    "original_quality_score": 0,
+    "confidence_level": 5,
+    "challenger_enhancement": {},
+    "quality_improvement": 0,
+    "intelligent_evaluation": false,
+    "send_for_rework": false,
+    "rework_requirements": []
+  },
+  "challenger_analysis": {
+    "challengers_executed": false,
+    "enhancement_summary": {},
+    "quality_boost": "0 points",
+    "critical_issues_found": 0,
+    "overall_impact": "Unknown"
+  },
+  "workflow_status": {
+    "completion_status": "completed",
+    "ready_for_stakeholders": true,
+    "next_steps": "Present to stakeholders"
+  },
+  "optimization_used": true,
+  "status": "completed"
+}

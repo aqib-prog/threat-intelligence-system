@@ -1,0 +1,38 @@
+# Environment variables
+.env
+.env.local
+
+# Data files
+src/data/*.db
+src/data/*.json
+src/data/*.csv
+src/data/*.xlsx
+!src/data/.gitkeep
+
+# Reports
+reports/*.html
+reports/*.pdf
+reports/*.json
+!reports/.gitkeep
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

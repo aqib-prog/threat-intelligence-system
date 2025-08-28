@@ -1,0 +1,4 @@
+site,system_name,system_type,related_processes,availability,integrity,confidentiality,system_criticality
+Corporate HQ,Customer Database,Database System,Customer data processing,VeryHigh,VeryHigh,VeryHigh,VeryHigh
+Branch Office,Email Server,Email System,Email communications,High,High,Medium,High
+Data Center,Web Application,Web Server,Public website hosting,Medium,High,Medium,Medium

@@ -1,0 +1,29 @@
+{
+  "": {
+    "data_type": "evidence",
+    "timestamp": "2025-08-27T13:34:10.526Z",
+    "count": 4,
+    "security_assessment_findings": [
+      {
+        "assessment_type": "Executive Interview",
+        "key_security_concerns": "High",
+        "confidence_level": "Phishing attacks targeting finance team"
+      },
+      {
+        "assessment_type": "Technical Assessment",
+        "key_security_concerns": "Medium",
+        "confidence_level": "Unpatched systems and weak passwords"
+      },
+      {
+        "assessment_type": "Incident Review",
+        "key_security_concerns": "High",
+        "confidence_level": "Malware infections from email attachments"
+      },
+      {
+        "assessment_type": "User Survey",
+        "key_security_concerns": "Low",
+        "confidence_level": "Password reuse and shared credentials"
+      }
+    ]
+  }
+}

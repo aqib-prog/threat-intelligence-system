@@ -1,0 +1,5 @@
+assessment_type,assessment_date,interviewer,interviewee_role,key_security_concerns,confidence_level
+Executive Interview,2025-01-15,Security Consultant,CISO,Phishing attacks targeting finance team,High
+Technical Assessment,2025-01-10,Internal Auditor,IT Manager,Unpatched systems and weak passwords,Medium
+User Survey,2025-01-12,Security Team,End Users,Password sharing and USB device usage,Medium
+Incident Review,2025-01-08,Incident Response,Security Analyst,Malware infections from email attachments,High

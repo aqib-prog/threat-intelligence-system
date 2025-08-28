@@ -1,0 +1,87 @@
+name: Monthly MITRE Database Update
+
+on:
+  # Run on the 1st of every month at 2:00 AM UTC
+  schedule:
+    - cron: "0 2 1 * *"
+
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+jobs:
+  update-mitre-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests sqlite3
+
+      - name: Create data directory
+        run: |
+          mkdir -p src/data
+
+      - name: Run MITRE database update
+        run: |
+          cd src/utils
+          python mitre_manager.py
+
+      - name: Check database file
+        run: |
+          if [ -f "src/data/mitre_cache.db" ]; then
+            echo "✅ Database file created successfully"
+            echo "Database size: $(du -h src/data/mitre_cache.db | cut -f1)"
+            
+            # Basic SQLite query to verify data
+            sqlite3 src/data/mitre_cache.db "SELECT COUNT(*) as total_techniques FROM techniques;" || echo "Database query failed"
+          else
+            echo "❌ Database file not found"
+            exit 1
+          fi
+
+      - name: Commit and push updated database
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Add the updated database file
+          git add src/data/mitre_cache.db
+
+          # Also add any raw JSON files that were created
+          git add src/data/*.json || true
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 Monthly MITRE database update - $(date '+%Y-%m-%d')"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create summary
+        run: |
+          echo "## 📊 MITRE Database Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "**Update Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ✅ Completed Successfully" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "src/data/mitre_cache.db" ]; then
+            echo "**Database Size:** $(du -h src/data/mitre_cache.db | cut -f1)" >> $GITHUB_STEP_SUMMARY
+            
+            # Get technique counts per domain
+            echo "**Data Summary:**" >> $GITHUB_STEP_SUMMARY
+            for domain in enterprise mobile ics; do
+              count=$(sqlite3 src/data/mitre_cache.db "SELECT COUNT(*) FROM techniques WHERE domain = '$domain';" 2>/dev/null || echo "0")
+              echo "- $domain: $count techniques" >> $GITHUB_STEP_SUMMARY
+            done
+          fi

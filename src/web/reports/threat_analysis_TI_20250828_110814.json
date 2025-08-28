@@ -1,0 +1,485 @@
+{
+  "analysis_id": "TI_20250828_110814",
+  "timestamp": "2025-08-28T11:08:14.691907",
+  "execution_time": 13.18,
+  "executive_summary": {
+    "threat_level": "Medium",
+    "overall_confidence": 7,
+    "key_findings": "Comprehensive threat analysis completed with optimization",
+    "immediate_actions": 3,
+    "strategic_recommendations": 5,
+    "business_impact": "$0.5M - $0.9M",
+    "analysis_quality": 75,
+    "challenger_enhanced": false,
+    "approval_status": "APPROVED"
+  },
+  "detailed_findings": {
+    "executive_summary": "A medium-risk attack scenario has been identified, leveraging multiple techniques to compromise the organization's systems. The attack begins with a Domain Name System (DNS) manipulation, followed by the exploitation of a vulnerable service, and ultimately leads to the exfiltration of sensitive data.",
+    "calculated_business_impact": {
+      "estimated_records": 0,
+      "cost_per_record": 169,
+      "range": "$0.5M - $0.9M",
+      "methodology": "Based on IBM Cost of Data Breach 2024 report"
+    },
+    "calculated_timeline": {
+      "min_days": 3,
+      "max_days": 6,
+      "range": "3-6 days",
+      "methodology": "Dynamic calculation based on MITRE tactic complexity",
+      "complexity_factors": {
+        "total_complexity": 7,
+        "unique_tactics": 5,
+        "techniques_analyzed": 6
+      }
+    },
+    "success_probability": {
+      "probability": 0.6799999999999999,
+      "percentage": "68%",
+      "assessment": "Medium"
+    },
+    "detailed_attack_phases": [
+      {
+        "phase": "Initial Access",
+        "techniques": [
+          "T1566"
+        ],
+        "technique_details": [
+          {
+            "id": "T1566",
+            "name": "Phishing",
+            "tactic": "initial-access"
+          }
+        ],
+        "timeline": "Days 1-1",
+        "duration_days": 1,
+        "description": "Attackers execute Initial Access using Phishing.",
+        "business_impact": "Establishes attacker foothold, potential for undetected access"
+      },
+      {
+        "phase": "Defense Evasion",
+        "techniques": [
+          "T1036.007"
+        ],
+        "technique_details": [
+          {
+            "id": "T1036.007",
+            "name": "Double File Extension",
+            "tactic": "defense-evasion"
+          }
+        ],
+        "timeline": "Days 2-2",
+        "duration_days": 1,
+        "description": "Attackers execute Defense Evasion using Double File Extension.",
+        "business_impact": "Reduced visibility into attack activities"
+      },
+      {
+        "phase": "Impact",
+        "techniques": [
+          "T1492"
+        ],
+        "technique_details": [
+          {
+            "id": "T1492",
+            "name": "Stored Data Manipulation",
+            "tactic": "impact"
+          }
+        ],
+        "timeline": "Days 3-3",
+        "duration_days": 1,
+        "description": "Attackers execute Impact using Stored Data Manipulation.",
+        "business_impact": "Direct business disruption, system availability issues"
+      }
+    ],
+    "prioritized_recommendations": [
+      "Deploy advanced threat detection and behavioral analysis",
+      "Deploy network segmentation and access controls",
+      "Deploy multi-factor authentication and password management solutions",
+      "Implement backup and recovery procedures with business continuity planning"
+    ],
+    "executive_narrative": "Executive Summary: Sophisticated threat actors launch targeted campaign using 6 validated attack techniques.\n        \n        Attack Timeline: The attack progresses over 3-6 days, leveraging modern techniques for rapid system compromise.\n        \n        Business Impact: Estimated financial impact ranges from $0.5M - $0.9M, including incident response costs, regulatory compliance, and business disruption.\n        \n        Success Probability: 68% likelihood based on current security posture and validated threat intelligence.\n        \n        This assessment is based on real-world attack patterns and current threat landscape data from 2024 incident reports.",
+    "asset_analysis": {
+      "findings": [
+        "The Customer Database system has a high exposure score of 50, indicating a significant attack surface.",
+        "The Email Server system has a moderate exposure score of 30, indicating a potential attack surface.",
+        "The Web Application system has a moderate exposure score of 35, indicating a potential attack surface.",
+        "The criticality analysis reveals that 1 system has a very high criticality, 1 system has a high criticality, and 1 system has a medium criticality.",
+        "The system characteristics analysis reveals that email, database, customer, server, web, processing, communications, application, public, and website are common characteristics among the systems."
+      ],
+      "mitre_techniques": [
+        "T1594",
+        "T1592",
+        "T1492",
+        "T1565.001",
+        "T1590.002",
+        "T1590.005",
+        "T1597.002",
+        "T1037"
+      ],
+      "risk_level": "High",
+      "recommendations": [
+        "Implement robust security measures to protect the Customer Database system, such as encryption and access controls.",
+        "Conduct regular security audits and vulnerability assessments to identify and remediate potential security weaknesses.",
+        "Implement a web application firewall (WAF) to protect the Web Application system from external attacks.",
+        "Implement email security measures, such as spam filtering and antivirus software, to protect the Email Server system."
+      ],
+      "confidence": 8,
+      "quantitative_analysis": {
+        "total_systems_analyzed": 3,
+        "critical_systems_count": 1,
+        "attack_surface_score": 38.3,
+        "lateral_movement_paths": 0,
+        "privilege_escalation_opportunities": 0,
+        "external_exposure_count": 1,
+        "data_sensitivity_score": 8.3
+      },
+      "risk_prioritization": [
+        {
+          "system_name": "Customer Database",
+          "risk_score": 50,
+          "risk_factors": [
+            "Critical System"
+          ],
+          "priority": "Medium",
+          "system_type": "Database System"
+        },
+        {
+          "system_name": "Web `Application",
+          "risk_score": 35,
+          "risk_factors": [
+            "External Exposure"
+          ],
+          "priority": "Low",
+          "system_type": "Web Server"
+        },
+        {
+          "system_name": "Email Server",
+          "risk_score": 30,
+          "risk_factors": [],
+          "priority": "Low",
+          "system_type": "Email System"
+        }
+      ],
+      "primary_attack_vectors": {
+        "Database Attacks": 1,
+        "Data Exfiltration": 1,
+        "Customer Facing": 1,
+        "Email Attacks": 1,
+        "External Exposure": 1,
+        "Web Application Attacks": 1
+      },
+      "validated_mitre_techniques": [
+        {
+          "id": "T1594",
+          "name": "Search Victim-Owned Websites"
+        },
+        {
+          "id": "T1592",
+          "name": "Gather Victim Host Information"
+        },
+        {
+          "id": "T1492",
+          "name": "Stored Data Manipulation"
+        },
+        {
+          "id": "T1565.001",
+          "name": "Stored Data Manipulation"
+        },
+        {
+          "id": "T1590.002",
+          "name": "DNS"
+        },
+        {
+          "id": "T1590.005",
+          "name": "IP Addresses"
+        },
+        {
+          "id": "T1597.002",
+          "name": "Purchase Technical Data"
+        },
+        {
+          "id": "T1037",
+          "name": "Boot or Logon Initialization Scripts"
+        }
+      ]
+    },
+    "evidence_analysis": {
+      "findings": "The organization is vulnerable to phishing attacks, with a high likelihood of user susceptibility to email-based attacks. The finance team is a specific target, and the use of weak passwords and unsecured devices increases the risk of credential access. The organization's reliance on digital certificates and technical data purchases may also be exploited by attackers.",
+      "mitre_techniques": [
+        "T1539",
+        "T1036.007",
+        "T1592",
+        "T1596.003",
+        "T1597.002",
+        "T1588.007",
+        "T1566",
+        "T1056.001",
+        "T1110",
+        "T1110.001"
+      ],
+      "risk_level": "High",
+      "recommendations": [
+        "Implement phishing awareness training for the finance team and all employees.",
+        "Enforce strong password policies and multi-factor authentication.",
+        "Secure devices and ensure timely software updates.",
+        "Review and limit digital certificate and technical data purchases.",
+        "Conduct regular incident response exercises to improve response times and effectiveness."
+      ],
+      "confidence": 8,
+      "behavioral_metrics": {
+        "phishing_susceptibility_score": 78,
+        "credential_hygiene_score": 44,
+        "security_awareness_score": 45,
+        "incident_response_readiness": 55,
+        "social_engineering_resistance": 60,
+        "policy_compliance_score": 65,
+        "technology_adoption_score": 60
+      },
+      "risk_categories": {
+        "critical_risks": [],
+        "high_risks": [],
+        "medium_risks": [
+          {
+            "characteristic": "phishing",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "team",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "weak",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "password",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "device",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "malware",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          },
+          {
+            "characteristic": "email",
+            "frequency": 1,
+            "evidence_strength": "Weak"
+          }
+        ],
+        "low_risks": [],
+        "risk_themes": {
+          "phishing": {
+            "incident_count": 1,
+            "severity": "Low"
+          }
+        }
+      },
+      "training_priorities": [
+        {
+          "priority": "Critical",
+          "topic": "Advanced Phishing Awareness and Email Security",
+          "evidence_count": 1,
+          "evidence_type": "Incident History",
+          "estimated_impact": "High"
+        }
+      ],
+      "security_maturity": {
+        "overall_score": 0.0,
+        "maturity_level": "Initial",
+        "dimension_scores": {
+          "governance": 0,
+          "awareness": 0,
+          "response": 0,
+          "technology": 0
+        },
+        "strengths": [],
+        "improvement_areas": [
+          "governance",
+          "awareness",
+          "response",
+          "technology"
+        ]
+      },
+      "behavioral_insights": "Identified 7 behavioral patterns and risk factors",
+      "validated_mitre_techniques": [
+        {
+          "id": "T1539",
+          "name": "Steal Web Session Cookie"
+        },
+        {
+          "id": "T1036.007",
+          "name": "Double File Extension"
+        },
+        {
+          "id": "T1592",
+          "name": "Gather Victim Host Information"
+        },
+        {
+          "id": "T1596.003",
+          "name": "Digital Certificates"
+        },
+        {
+          "id": "T1597.002",
+          "name": "Purchase Technical Data"
+        },
+        {
+          "id": "T1588.007",
+          "name": "Artificial Intelligence"
+        },
+        {
+          "id": "T1566",
+          "name": "Phishing"
+        },
+        {
+          "id": "T1056.001",
+          "name": "Keylogging"
+        },
+        {
+          "id": "T1110",
+          "name": "Brute Force"
+        },
+        {
+          "id": "T1110.001",
+          "name": "Password Guessing"
+        }
+      ],
+      "behavioral_mitre_mappings": [
+        {
+          "finding": "phishing attacks targeting finance team",
+          "evidence_source": "Executive Interview",
+          "technique_id": "T1566",
+          "technique_name": "Phishing",
+          "mapping_confidence": "High",
+          "confidence_score": 80,
+          "mapping_reasons": [
+            "Phishing behavior match"
+          ],
+          "behavioral_context": "Email security behavior analysis"
+        },
+        {
+          "finding": "malware infections from email attachments",
+          "evidence_source": "Incident Review",
+          "technique_id": "T1566",
+          "technique_name": "Phishing",
+          "mapping_confidence": "High",
+          "confidence_score": 80,
+          "mapping_reasons": [
+            "Phishing behavior match"
+          ],
+          "behavioral_context": "Email security behavior analysis"
+        }
+      ]
+    }
+  },
+  "execution_log": [
+    {
+      "timestamp": "2025-08-28T11:08:01.548051",
+      "agent": "orchestrator",
+      "status": "COMPLETED",
+      "duration": 0.036356,
+      "error": null,
+      "priority": 1
+    },
+    {
+      "timestamp": "2025-08-28T11:08:05.233272",
+      "agent": "asset_vulnerability_mapper",
+      "status": "COMPLETED",
+      "duration": 3.685133,
+      "error": null,
+      "priority": 2
+    },
+    {
+      "timestamp": "2025-08-28T11:08:05.389562",
+      "agent": "interview_analyzer",
+      "status": "COMPLETED",
+      "duration": 3.841338,
+      "error": null,
+      "priority": 2
+    },
+    {
+      "timestamp": "2025-08-28T11:08:08.824989",
+      "agent": "threat_validator",
+      "status": "COMPLETED",
+      "duration": 3.43484,
+      "error": null,
+      "priority": 3
+    },
+    {
+      "timestamp": "2025-08-28T11:08:14.674889",
+      "agent": "scenario_generator",
+      "status": "COMPLETED",
+      "duration": 5.849727,
+      "error": null,
+      "priority": 4
+    },
+    {
+      "timestamp": "2025-08-28T11:08:14.691691",
+      "agent": "quality_gate",
+      "status": "COMPLETED",
+      "duration": 0.016641,
+      "error": null,
+      "priority": 5
+    }
+  ],
+  "performance_metrics": {
+    "total_agents": 6,
+    "completed_agents": 6,
+    "total_execution_time": 16.86,
+    "avg_execution_time": 2.81,
+    "fastest_agent": {
+      "name": "quality_gate",
+      "time": 0.02
+    },
+    "slowest_agent": {
+      "name": "scenario_generator",
+      "time": 5.85
+    },
+    "optimization_effectiveness": "High"
+  },
+  "recommendations": [
+    "Deploy advanced threat detection and behavioral analysis",
+    "Deploy network segmentation and access controls",
+    "Deploy multi-factor authentication and password management solutions",
+    "Implement backup and recovery procedures with business continuity planning"
+  ],
+  "auto_approved": false,
+  "quality_assurance": {
+    "approval_status": "APPROVED",
+    "quality_score": 75,
+    "original_quality_score": 0,
+    "confidence_level": 5,
+    "challenger_enhancement": {
+      "challengers_executed": 0,
+      "skip_reason": "QualityGate send_to_challengers=False"
+    },
+    "quality_improvement": 0,
+    "intelligent_evaluation": false,
+    "send_for_rework": false,
+    "rework_requirements": []
+  },
+  "challenger_analysis": {
+    "challengers_executed": false,
+    "enhancement_summary": {
+      "challengers_executed": 0,
+      "skip_reason": "QualityGate send_to_challengers=False"
+    },
+    "quality_boost": "0 points",
+    "critical_issues_found": 0,
+    "overall_impact": "Unknown"
+  },
+  "workflow_status": {
+    "completion_status": "completed",
+    "ready_for_stakeholders": true,
+    "next_steps": "Present to stakeholders"
+  },
+  "optimization_used": true,
+  "status": "completed"
+}

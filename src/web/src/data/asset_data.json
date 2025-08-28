@@ -1,0 +1,30 @@
+{
+  "": {
+    "data_type": "asset",
+    "timestamp": "2025-08-27T13:34:08.596Z",
+    "count": 3,
+    "system_details": [
+      {
+        "site": "Corporate HQ",
+        "system_name": "Customer Database",
+        "system_type": "Database System",
+        "related_processes": "Customer data processing",
+        "system_criticality": "VeryHigh"
+      },
+      {
+        "site": "Branch Office",
+        "system_name": "Email Server",
+        "system_type": "Email System",
+        "related_processes": "Email communications",
+        "system_criticality": "High"
+      },
+      {
+        "site": "Data Center",
+        "system_name": "Web Application",
+        "system_type": "Web Server",
+        "related_processes": "Public website hosting",
+        "system_criticality": "Medium"
+      }
+    ]
+  }
+}
