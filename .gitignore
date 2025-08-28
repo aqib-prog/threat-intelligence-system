@@ -3,6 +3,7 @@
 .env.local
 
 # Data files
+!src/data/mitre_cache.db
 src/data/*.db
 src/data/*.json
 src/data/*.csv
