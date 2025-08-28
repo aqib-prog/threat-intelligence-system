@@ -32,8 +32,7 @@ jobs:
 
       - name: Run MITRE database update
         run: |
-          cd src/utils
-          python mitre_manager.py
+          python src/utils/mitre_manager.py
 
       - name: Check database file
         run: |
